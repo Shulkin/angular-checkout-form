@@ -1,4 +1,4 @@
-export class PaidClient {
+export class Payment {
   clientId: number;
   paidAmount: number;
   constructor(clientId: number, paidAmount: number) {
