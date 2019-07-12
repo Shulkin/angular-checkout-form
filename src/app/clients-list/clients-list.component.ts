@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PersistenceService, StorageType } from 'angular-persistence';
 // my classes
 import { Client } from '../../classes/client';
 import { ClientPaidService } from '../../classes/client-paid-service';
@@ -32,7 +33,8 @@ export class ClientsListComponent implements OnInit {
     private clientsService: ClientsService,
     private servicesService: ServicesService,
     private clientServicesService: ClientServicesService,
-    private clientPaidServicesService: ClientPaidServicesService
+    private clientPaidServicesService: ClientPaidServicesService,
+    private persistenceService: PersistenceService
   ) {}
   ngOnInit() {
     this.getClients();
@@ -106,8 +108,8 @@ export class ClientsListComponent implements OnInit {
       const newPaidAmount = +(Math.floor(clientPayment.amount * debtPercentage / 100).toFixed(2));
       if (paidService) {
         if (paidService.paidAmount + newPaidAmount > clientService.totalCost) {
-          paidService.paidAmount = clientService.totalCost;
           totalOverdraft += paidService.paidAmount + newPaidAmount - clientService.totalCost;
+          paidService.paidAmount = clientService.totalCost;
         } else {
           paidService.paidAmount += newPaidAmount;
         }
@@ -123,5 +125,7 @@ export class ClientsListComponent implements OnInit {
       // TODO: inject currency pipe to display overdraft in pretty manner
       UIkit.notification(`Осталось ${totalOverdraft}`);
     }
+    // TODO: this should be in corresponding service
+    this.persistenceService.set('clientPaidServices', this.clientPaidServices, { type: StorageType.LOCAL });
   }
 }

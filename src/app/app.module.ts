@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
+import { PersistenceModule } from 'angular-persistence';
 
 import { AppComponent } from './app.component';
 import { ClientsListComponent } from './clients-list/clients-list.component';
@@ -15,6 +16,7 @@ import { CheckoutFormComponent } from './checkout-form/checkout-form.component';
     CheckoutFormComponent
   ],
   imports: [
+    PersistenceModule,
     BrowserModule,
     FormsModule
   ],
