@@ -1,0 +1,28 @@
+<table class="servicesTable">
+  <thead>
+    <tr>
+      <td>
+        Услуга
+      </td>
+      <td>
+        Стоимость
+      </td>
+      <td>
+        Оплачено
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let service of services">
+      <td>
+        {{ service.name }}
+      </td>
+      <td>
+        {{ service.cost }}
+      </td>
+      <td>
+        {{ service.paidAmount }}
+      </td>
+    </tr>
+  </tbody>
+</table>

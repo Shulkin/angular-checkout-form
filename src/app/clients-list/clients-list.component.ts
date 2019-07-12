@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { DisplayService } from '../../classes/display-service';
 import { CLIENTS } from '../../mock-data/mock-clients';
+import { SERVICES } from '../../mock-data/mock-services';
+import { CLIENT_SERVICES } from '../../mock-data/mock-client-services';
+import { CLIENT_PAID_SERVICES } from '../../mock-data/mock-client-paid-services';
 
 @Component({
   selector: 'app-clients-list',
@@ -8,10 +12,29 @@ import { CLIENTS } from '../../mock-data/mock-clients';
 })
 export class ClientsListComponent implements OnInit {
   title = 'Список наших клиентов';
+  // TODO: should be in global store
   clients = CLIENTS;
+  services = SERVICES;
+  clientServices = CLIENT_SERVICES;
+  clientPaidServices = CLIENT_PAID_SERVICES;
 
   constructor() {
   }
   ngOnInit() {
+  }
+  getServicesRenderedToClientByClientId(clientId: number): DisplayService[] {
+    return this.clientServices
+      .filter(item => item.clientId === clientId)
+      .map(clientService => {
+        const service = this.services.find(item => item.id === clientService.serviceId);
+        const paidService = this.clientPaidServices.find(item => {
+          return item.clientId === clientService.clientId && item.serviceId === clientService.serviceId;
+        });
+        return {
+          name: service ? service.name : '',
+          cost: clientService.cost,
+          paidAmount: paidService ? paidService.paidAmount : 0,
+        };
+      });
   }
 }
