@@ -1,0 +1,23 @@
+<section class="clientsList">
+  <h2 class="clientsList-title">
+    {{ title }}
+  </h2>
+  <ul class="clientsList-list">
+    <li *ngFor="let client of clients" class="clientsList-item clientItem">
+      <h3 class="clientItem-title">
+        {{ client.name }}
+      </h3>
+      <div class="clientItem-table servicesTable">
+        <table class="servicesTable-table">
+          <thead>
+            <tr>
+              <td>Услуга</td>
+              <td>Стоимость</td>
+              <td>Оплачено</td>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </li>
+  </ul>
+</section>

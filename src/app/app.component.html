@@ -1,12 +1,14 @@
-<div class="app-wrapper wrapper">
-  <header class="app-header header">
-    <h1 class="header-title">
-      {{ title }}!
+<div class="app-wrapper appWrapper">
+  <header class="app-header appHeader">
+    <h1 class="appHeader-title">
+      {{ title }}
     </h1>
   </header>
-  <main class="app-body main"></main>
-  <footer class="app-footer footer">
-    <div class="footer-developers">
+  <main class="app-main appMain">
+    <app-clients-list></app-clients-list>
+  </main>
+  <footer class="app-footer appFooter">
+    <div class="appFooter-developers">
       <span>Developed by</span>
       <a href="https://github.com/Shulkin/angular-checkout-form">
         Evgeny Shulkin
