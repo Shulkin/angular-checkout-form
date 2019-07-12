@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Client } from '../../classes/client';
 
+declare var UIkit: any;
+
 @Component({
   selector: 'app-checkout-form',
   templateUrl: './checkout-form.component.html',
@@ -14,6 +16,6 @@ export class CheckoutFormComponent implements OnInit {
   ngOnInit() {
   }
   onSubmit() {
-    // TODO: close modal
+    UIkit.modal('#make-payment-modal').hide();
   }
 }
