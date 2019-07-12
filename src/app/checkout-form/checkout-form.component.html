@@ -5,12 +5,15 @@
     </h2>
     <input
       type="text"
-      name="deposite-model"
+      name="deposit-model"
       class="checkoutForm-amountInput"
-      [(ngModel)]="depositeModel"
+      [(ngModel)]="depositModel"
     >
+    <span class="checkoutForm-hint">
+      Внимание! Внесенная сумма распределяется между неоплаченными услугами пропорционально долгу
+    </span>
     <button type="submit" class="checkoutForm-submitButton">
-      Внести оплату
+      Оплатить
     </button>
   </div>
   <ng-template #clientNotFound>

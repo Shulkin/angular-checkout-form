@@ -8,8 +8,6 @@ import { DisplayService } from '../../classes/display-service';
 })
 export class ServicesTableComponent implements OnInit {
   @Input() services: DisplayService[];
-  constructor() {
-  }
-  ngOnInit() {
-  }
+  constructor() {}
+  ngOnInit() {}
 }

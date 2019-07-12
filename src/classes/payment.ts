@@ -1,8 +1,9 @@
+// how much money the user has made through checkout form
 export class Payment {
   clientId: number;
-  paidAmount: number;
-  constructor(clientId: number, paidAmount: number) {
+  amount: number;
+  constructor(clientId: number, amount: number) {
     this.clientId = clientId;
-    this.paidAmount = paidAmount;
+    this.amount = amount;
   }
 }

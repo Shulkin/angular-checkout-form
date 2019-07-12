@@ -1,3 +1,4 @@
+// service that has already been paid by the client
 export class ClientPaidService {
   clientId: number;
   serviceId: number;

@@ -4,12 +4,12 @@
   </h2>
   <ul class="clientsList-list">
     <li *ngFor="let client of clients" class="clientsList-item clientItem">
-      <h3 class="clientItem-title">
+      <h4 class="clientItem-title">
         {{ client.name }}
-      </h3>
+      </h4>
       <div class="clientItem-table">
         <app-services-table
-          [services]="getServicesProviedToClientByClientId(client.id)"
+          [services]="getServicesProvidedToClient(client.id)"
         ></app-services-table>
       </div>
       <button
@@ -27,8 +27,8 @@
   <div class="uk-modal-dialog uk-modal-body">
     <button type="button" class="uk-modal-close-default" uk-close></button>
     <app-checkout-form
-      [client]="clientWhoMakesPayment"
-      (submited)="onClientMadePayment($event)"
+      [client]="selectedClient"
+      (submitted)="onSubmitPayment($event)"
     ></app-checkout-form>
   </div>
 </div>
