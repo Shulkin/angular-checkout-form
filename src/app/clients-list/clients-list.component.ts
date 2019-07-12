@@ -8,8 +8,8 @@ import { Service } from '../../classes/service';
 import { UnpaidService } from '../../classes/unpaid-service';
 import { CLIENT_PAID_SERVICES } from '../../mock-data/mock-client-paid-services';
 import { CLIENT_SERVICES } from '../../mock-data/mock-client-services';
-import { CLIENTS } from '../../mock-data/mock-clients';
 import { SERVICES } from '../../mock-data/mock-services';
+import { ClientsService } from '../clients.service';
 
 declare var UIkit: any;
 
@@ -23,12 +23,17 @@ export class ClientsListComponent implements OnInit {
   // TODO: get from services
   clientPaidServices: ClientPaidService[] = CLIENT_PAID_SERVICES;
   clientServices: ClientService[] = CLIENT_SERVICES;
-  clients: Client[] = CLIENTS;
+  clients: Client[];
   services: Service[] = SERVICES;
   selectedClient: Client = null;
 
-  constructor() {}
-  ngOnInit() {}
+  constructor(private clientsService: ClientsService) {}
+  ngOnInit() {
+    this.getClients();
+  }
+  getClients() {
+    this.clientsService.getClients().subscribe(clients => this.clients = clients);
+  }
   // TODO: move to some common getters
   getService(serviceId: number): Service {
     return this.services.find(item => item.id === serviceId);
