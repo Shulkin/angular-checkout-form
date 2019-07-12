@@ -28,6 +28,7 @@
     <button type="button" class="uk-modal-close-default" uk-close></button>
     <app-checkout-form
       [client]="clientWhoMakesPayment"
+      (submited)="onClientMadePayment($event)"
     ></app-checkout-form>
   </div>
 </div>

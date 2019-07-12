@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Client } from '../../classes/client';
+import { PaidClient } from '../../classes/paid-client';
 
 declare var UIkit: any;
 
@@ -10,12 +11,14 @@ declare var UIkit: any;
 })
 export class CheckoutFormComponent implements OnInit {
   @Input() client: Client;
-  depositeAmount: number = 0;
+  @Output() submited = new EventEmitter<PaidClient>();
+  depositeModel: number = 0;
   constructor() {
   }
   ngOnInit() {
   }
   onSubmit() {
+    this.submited.emit(new PaidClient(this.client.id, this.depositeModel));
     UIkit.modal('#make-payment-modal').hide();
   }
 }
