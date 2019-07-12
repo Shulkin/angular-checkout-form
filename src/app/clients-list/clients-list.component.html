@@ -12,6 +12,22 @@
           [services]="getServicesRenderedToClientByClientId(client.id)"
         ></app-services-table>
       </div>
+      <button
+        type="button"
+        class="clientItem-button makePaymentButton"
+        (click)="onOpenPaymentWindow(client.id)"
+        uk-toggle="target: #make-payment-modal"
+      >
+        Внести оплату
+      </button>
     </li>
   </ul>
 </section>
+<div id="make-payment-modal" uk-modal>
+  <div class="uk-modal-dialog uk-modal-body">
+    <button type="button" class="uk-modal-close-default" uk-close></button>
+    <app-checkout-form
+      [client]="clientWhoMakesPayment"
+    ></app-checkout-form>
+  </div>
+</div>

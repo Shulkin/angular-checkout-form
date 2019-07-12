@@ -1,0 +1,21 @@
+<form class="checkoutForm" (ngSubmit)="onSubmit()" #form="ngForm">
+  <div *ngIf="client; else clientNotFound">
+    <h2 class="checkoutForm-title">
+      Клиент {{ client.name }} вносит оплату
+    </h2>
+    <input
+      type="text"
+      name="deposite-amount"
+      class="checkoutForm-amountInput"
+      [(ngModel)]="depositeAmount"
+    >
+    <button type="submit" class="checkoutForm-submitButton">
+      Внести оплату
+    </button>
+  </div>
+  <ng-template #clientNotFound>
+    <h2 class="checkoutForm-title">
+      Клиент не найден
+    </h2>
+  </ng-template>
+</form>

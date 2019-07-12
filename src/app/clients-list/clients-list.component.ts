@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Client } from '../../classes/client';
 import { DisplayService } from '../../classes/display-service';
 import { CLIENTS } from '../../mock-data/mock-clients';
 import { SERVICES } from '../../mock-data/mock-services';
@@ -17,6 +18,7 @@ export class ClientsListComponent implements OnInit {
   services = SERVICES;
   clientServices = CLIENT_SERVICES;
   clientPaidServices = CLIENT_PAID_SERVICES;
+  clientWhoMakesPayment: Client = null;
 
   constructor() {
   }
@@ -36,5 +38,8 @@ export class ClientsListComponent implements OnInit {
           paidAmount: paidService ? paidService.paidAmount : 0,
         };
       });
+  }
+  onOpenPaymentWindow(clientId) {
+    this.clientWhoMakesPayment = this.clients.find(item => item.id === clientId) || null;
   }
 }
