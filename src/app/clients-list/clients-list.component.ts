@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+// my classes
 import { Client } from '../../classes/client';
 import { ClientPaidService } from '../../classes/client-paid-service';
 import { ClientService } from '../../classes/client-service';
@@ -6,10 +7,11 @@ import { DisplayService } from '../../classes/display-service';
 import { Payment } from '../../classes/payment';
 import { Service } from '../../classes/service';
 import { UnpaidService } from '../../classes/unpaid-service';
-import { CLIENT_PAID_SERVICES } from '../../mock-data/mock-client-paid-services';
-import { CLIENT_SERVICES } from '../../mock-data/mock-client-services';
+// data services
 import { ClientsService } from '../clients.service';
 import { ServicesService } from '../services.service';
+import { ClientServicesService } from '../client-services.service';
+import { ClientPaidServicesService } from '../client-paid-services.service';
 
 declare var UIkit: any;
 
@@ -20,25 +22,35 @@ declare var UIkit: any;
 })
 export class ClientsListComponent implements OnInit {
   title = 'Список наших клиентов';
-  // TODO: get from services
-  clientPaidServices: ClientPaidService[] = CLIENT_PAID_SERVICES;
-  clientServices: ClientService[] = CLIENT_SERVICES;
+  clientPaidServices: ClientPaidService[];
+  clientServices: ClientService[];
   clients: Client[];
   services: Service[];
   selectedClient: Client = null;
 
   constructor(
     private clientsService: ClientsService,
-    private servicesService: ServicesService) {}
+    private servicesService: ServicesService,
+    private clientServicesService: ClientServicesService,
+    private clientPaidServicesService: ClientPaidServicesService
+  ) {}
   ngOnInit() {
     this.getClients();
     this.getServices();
+    this.getClientServices();
+    this.getClientPaidServices();
   }
   getClients() {
     this.clientsService.getClients().subscribe(data => this.clients = data);
   }
   getServices() {
     this.servicesService.getServices().subscribe(data => this.services = data);
+  }
+  getClientServices() {
+    this.clientServicesService.getClientServices().subscribe(data => this.clientServices = data);
+  }
+  getClientPaidServices() {
+    this.clientPaidServicesService.getClientPaidServices().subscribe(data => this.clientPaidServices = data);
   }
   // TODO: move to some common getters
   getService(serviceId: number): Service {
